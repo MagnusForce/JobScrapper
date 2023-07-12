@@ -2,6 +2,7 @@ import sqlite3
 from bs4 import BeautifulSoup
 import requests
 import time
+from datetime import datetime
 
 start_time = time.time()
 
@@ -105,5 +106,11 @@ conn.close()
 
 end_time = time.time()
 execution_time = end_time - start_time
+
+current_datetime = datetime.now()
+formatted_datetime = current_datetime.strftime("%Y-%m-%d %H:%M:%S")
+
+with open("runs_datetime.txt", "a") as f:
+    f.write(formatted_datetime + "\n")
 
 print(f"Execution time: {execution_time} seconds")
