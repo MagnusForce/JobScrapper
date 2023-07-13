@@ -114,3 +114,5 @@ with open("runs_datetime.txt", "a") as f:
     f.write(formatted_datetime + "\n")
 
 print(f"Execution time: {execution_time} seconds")
+
+input("Press Enter to exit...")

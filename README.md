@@ -6,10 +6,11 @@ This is a Python script that scrapes job ads from the website "cvbankas.lt" and 
 
 This program can be used as is by simply running the Python script. However, creating an .exe file makes the program more user-friendly.
 
-Most modules used in this project are pre-installed with Python. The only modules you need to install are bs4, and requests. To install these modules, run these commands in CMD:
+Most modules used in this project are pre-installed with Python. The only modules you need to install are bs4, requests and datetime. To install these modules, run these commands in CMD:
 
 `pip install bs4`
 `pip install requests`
+`pip install datetime`
 
 # Usage
 
