@@ -4,7 +4,7 @@ This is a Python script that scrapes job ads from the website "cvbankas.lt" and 
 
 # Installation
 
-This program can be used as is by simply running the Python script. However, creating an .exe file makes the program more user-friendly.
+This program can be used as is by simply running the Python script.
 
 Most modules used in this project are pre-installed with Python. The only modules you need to install are bs4, requests and datetime. To install these modules, run these commands in CMD:
 
@@ -22,7 +22,7 @@ Script is intended to run on each computer startup (it still can be used manuall
 3. Move the shortcut to the Startup folder.
 4. Test your script by restarting your computer.
 
-You can modify the `filter_list` variable to include specific keywords that the job ads should match. By default, it includes "Python" and "Junior". Only the job ads containing any of the keywords in their titles will be saved in the database.
+You can modify the `filter_list` variable to include specific keywords that the job ads should match. By default, it includes "Python" and "Junior". Only the job ads containing any of the keywords in their titles will be saved in the database. Script also times how long it took to run, giving precise time at the end.
 
 #### Database Schema
 
