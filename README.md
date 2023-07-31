@@ -22,7 +22,7 @@ Script is intended to run on each computer startup (it still can be used manuall
 3. Move the shortcut to the Startup folder.
 4. Test your script by restarting your computer.
 
-You can modify the `filter_list` variable to include specific keywords that the job ads should match. By default, it includes "Python" and "Junior". Only the job ads containing any of the keywords in their titles will be saved in the database. Script also times how long it took to run, giving precise time at the end.
+You can modify the `filter_list` variable to include specific keywords that the job ads should match. By default, it includes "Python", "Junior" and "Programoutojas". Only the job ads containing any of the keywords in their titles will be saved in the database. Script also times how long it took to run, giving precise time at the end.
 
 #### Database Schema
 

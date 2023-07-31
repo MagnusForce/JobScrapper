@@ -1,3 +1,4 @@
+import os
 import sqlite3
 from bs4 import BeautifulSoup
 import requests
@@ -27,7 +28,7 @@ soup = BeautifulSoup(page, "html.parser")
 pages = soup.find(class_="pages_ul_inner")
 last_page = int(pages.select("li:last-child")[0].text)
 
-filter_list = ["Python", "Junior"]
+filter_list = ["Python", "Junior", "Programuotojas"]
 
 job_links = []
 
@@ -81,17 +82,9 @@ for page in range(1, last_page + 1):
                         VALUES (?, ?, ?, ?, ?)
                     ''', (text_role, text_inside_company, text_salary, text_salary_calculation, text_link))
 
-                else:
-                    c.execute('''
-                        UPDATE job_ads
-                        SET days_in = days_in + 1
-                        WHERE role=? AND company=? AND salary=? AND salary_calculation=? AND link=?
-                    ''', (text_role, text_inside_company, text_salary, text_salary_calculation, text_link))
-
                 job_links.append(text_link)
 
     conn.commit()
-
 
 c.execute('SELECT link FROM job_ads')
 db_job_links = [row[0] for row in c.fetchall()]
@@ -101,17 +94,27 @@ links_to_delete = set(db_job_links) - set(job_links)
 for link in links_to_delete:
     c.execute('DELETE FROM job_ads WHERE link=?', (link,))
 
+last_execution_date = None
+if os.path.exists("last_execution_date.txt"):
+    with open("last_execution_date.txt", "r") as f:
+        last_execution_date = f.read().strip()
+
+current_date = datetime.now().date().isoformat()
+
+if last_execution_date != current_date:
+    c.execute('''
+        UPDATE job_ads
+        SET days_in = days_in + 1
+    ''')
+
+    with open("last_execution_date.txt", "w") as f:
+        f.write(current_date)
+
 conn.commit()
 conn.close()
 
 end_time = time.time()
 execution_time = end_time - start_time
-
-current_datetime = datetime.now()
-formatted_datetime = current_datetime.strftime("%Y-%m-%d %H:%M:%S")
-
-with open("runs_datetime.txt", "a") as f:
-    f.write(formatted_datetime + "\n")
 
 print(f"Execution time: {execution_time} seconds")
 
